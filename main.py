@@ -1,7 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-Spyder Editor
+mofongo
 
-This is a temporary script file.
+main.py
+
+Emmanuel Suarez
+Jonathan Esteban
+
 """
 
+def main() :
+    print "nothing yet"
+
+if __name__ == '__main__': main()
+        

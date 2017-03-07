@@ -8,6 +8,7 @@ Jona's ideas
 
 Emma's ideas
 
-TODO: fill me with ideas
-
-
+1) simple paint app
+2) simple game
+* don't particularly love any of these,
+  have to think a little more
