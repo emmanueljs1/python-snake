@@ -12,3 +12,5 @@ Emma's ideas
 2) simple game
 * don't particularly love any of these,
   have to think a little more
+
+final decision: snake in python
