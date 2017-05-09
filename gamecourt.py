@@ -5,7 +5,13 @@ Created on Sat Mar 11 17:56:11 2017
 @authors: emma, jona
 """
 
-def main() :
-    print "nothing yet"
+import Tkinter as tk
+import Canvas
 
-if __name__ == '__main__': main()
+class GameCourt(object):    
+    
+    def __init__(self):
+        master = tk()
+        court = Canvas(master, width=500, height=500)
+        
+        

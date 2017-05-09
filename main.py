@@ -5,8 +5,6 @@ Created on Sat Mar 11 17:54:41 2017
 @authors: emma, jona
 """
 
-import Tkinter as tk
-
 def main() :
     print "nothing yet"
 
