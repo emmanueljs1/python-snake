@@ -24,6 +24,7 @@ class GameCourt(object):
         canvas.pack()
         court = []
         self.popup = None
+        self.reset_button = None
 
         i = 0
         j = 0
@@ -51,16 +52,17 @@ class GameCourt(object):
             self.direction = Direction.RIGHT
             
         def popup(string):
-            self.popup = Toplevel()
-            self.popup.title("Update:")
-            msg = Message(self.popup, text=string)
-            msg.pack()
-            button = Button(self.popup, text="Reset", command=reset)
-            button.pack()
+            #self.popup = Toplevel()
+            #self.popup.title("Update:")
+            #msg = Message(self.popup, text=string)
+            self.popup = Message(master,text=string)
+            self.popup.pack()
+            self.reset_button = Button(master, text="Reset", command=reset)
+            self.reset_button.pack()
 
         def update():
             (old_x, old_y), (x, y) = self.snake.move(self.direction)
-
+            
             if self.snake.intersects_with_self():
                 popup("You crashed against yourself!")
                 return
@@ -88,7 +90,11 @@ class GameCourt(object):
             if self.popup is not None:
                 self.popup.destroy()
                 self.popup = None
-            
+
+            if self.reset_button is not None:
+                self.reset_button.destroy()
+                self.reset_button = None
+
             for col in court:
                 for block in col:
                     canvas.itemconfig(block, fill="white")
