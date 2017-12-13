@@ -7,7 +7,7 @@ Created on Sat Mar 11 17:54:41 2017
 
 import gamecourt
 
-def main() :
+def main():
     gamecourt.GameCourt()
 
 if __name__ == '__main__': main()
