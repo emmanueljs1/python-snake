@@ -1,4 +1,4 @@
-<h1> Mofongo: Snake written in Python </h1>
+<h1> Snake written in Python </h1>
 
 <b>Authors:</b>
 
