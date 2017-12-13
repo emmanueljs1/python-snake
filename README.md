@@ -20,6 +20,6 @@ Contains the canvas on which the game is played
 
 Contains a list of game objects that represent the body of the snake
 
-<i> gameobject.py </i>
+<i> direction.py </i>
 
-Represents a game object
+Contains an enum for directions
