@@ -91,8 +91,8 @@ class GameCourt(object):
             self.snake = Snake()
             self.food = randint(0, pixels - 1), randint(1, pixels - 1)
             self.direction = Direction.UP
-            self.score = 0
-            score_text.set("Score: 0")
+            self.score = 1
+            score_text.set("Score: 1")
             status_text.set("Status: playing")
             master.bind("<Down>", down)
             master.bind("<Up>", up)
