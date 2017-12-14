@@ -6,7 +6,7 @@ Created on Sat Mar 11 17:56:11 2017
 """
 
 from snake import Snake
-from tkinter import Tk, Canvas, Toplevel, Message, Button
+from tkinter import Tk, Canvas, Button, Label, StringVar
 from direction import Direction
 from random import randint
 
@@ -14,17 +14,22 @@ from random import randint
 class GameCourt(object):
 
     def __init__(self):
-        master = Tk()
-        master.title("Snake in Python")
         width = 500
         height = 500
         px = 10
         pixels = width // px
+        court = []
+
+        master = Tk()
+        master.title("Snake in Python")
+        score_text = StringVar()
+        Label(master, textvariable=score_text).pack()
+
         canvas = Canvas(master, width=width, height=height)
         canvas.pack()
-        court = []
-        self.popup = None
-        self.reset_button = None
+
+        status_text = StringVar()
+        Label(master, textvariable=status_text).pack()
 
         i = 0
         j = 0
@@ -37,8 +42,8 @@ class GameCourt(object):
                 j = j + px
             court.append(cols)
             i = i + px
-            j = 0
-
+            j = 0        
+        
         def up(event):
             self.direction = Direction.UP
 
@@ -50,33 +55,26 @@ class GameCourt(object):
 
         def right(event):
             self.direction = Direction.RIGHT
-            
-        def popup(string):
-            #self.popup = Toplevel()
-            #self.popup.title("Update:")
-            #msg = Message(self.popup, text=string)
-            self.popup = Message(master,text=string)
-            self.popup.pack()
-            self.reset_button = Button(master, text="Reset", command=reset)
-            self.reset_button.pack()
 
         def update():
             (old_x, old_y), (x, y) = self.snake.move(self.direction)
             
             if self.snake.intersects_with_self():
-                popup("You crashed against yourself!")
+                status_text.set("You crashed against yourself!")
                 return
 
             food_x, food_y = self.food
             canvas.itemconfig(court[food_x][food_y], fill="red")
 
             if food_x == x and food_y == y:
+                self.score += 1
+                score_text.set("Score: {}".format(self.score))
                 canvas.itemconfig(court[food_x][food_y], fill="white")
                 self.snake.grow(self.direction)
                 self.food = randint(0, pixels - 1), randint(0, pixels - 1)
 
             if x < 0 or y < 0 or x >= pixels or y >= pixels:
-                popup("You crashed against a wall!")
+                status_text.set("You crashed against a wall!")
                 return
 
             canvas.itemconfig(court[old_x][old_y], fill="white")
@@ -87,20 +85,15 @@ class GameCourt(object):
             master.after(100, update)
 
         def reset():
-            if self.popup is not None:
-                self.popup.destroy()
-                self.popup = None
-
-            if self.reset_button is not None:
-                self.reset_button.destroy()
-                self.reset_button = None
-
             for col in court:
                 for block in col:
                     canvas.itemconfig(block, fill="white")
             self.snake = Snake()
             self.food = randint(0, pixels - 1), randint(1, pixels - 1)
             self.direction = Direction.UP
+            self.score = 0
+            score_text.set("Score: 0")
+            status_text.set("Status: playing")
             master.bind("<Down>", down)
             master.bind("<Up>", up)
             master.bind("<Left>", left)
@@ -108,4 +101,5 @@ class GameCourt(object):
             master.after(0, update)
             master.mainloop()
 
+        Button(master, text="Reset", command=reset).pack()
         reset()
