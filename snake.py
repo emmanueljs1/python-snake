@@ -10,7 +10,7 @@ from collections import deque
 
 
 class Snake(object):
-    
+
     def __init__(self):
         self.body = deque()
         self.body.append((25, 25))
@@ -23,7 +23,7 @@ class Snake(object):
         elif direction == Direction.DOWN:
             y += 1
         elif direction == Direction.LEFT:
-            x -= 1 
+            x -= 1
         else:
             x += 1
         self.body.append((x, y))
@@ -47,7 +47,7 @@ class Snake(object):
         elif direction == Direction.DOWN:
             y += 1
         elif direction == Direction.LEFT:
-            x -= 1 
+            x -= 1
         else:
             x += 1
         self.body.appendleft((x, y))
