@@ -11,9 +11,9 @@ from collections import deque
 
 class Snake(object):
 
-    def __init__(self):
+    def __init__(self, max_x, max_y):
         self.body = deque()
-        self.body.append((25, 25))
+        self.body.append((max_x // 2, max_y // 2))
         self.color = "blue"
 
     def grow(self, direction):
